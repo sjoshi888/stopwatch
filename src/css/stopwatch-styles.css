@@ -1,7 +1,7 @@
 :root {
 	--gray-color: #cbcbcb;
     --charcoal-color: #36454F;
-    --voilet-color: #1adaeb;
+    --voilet-color: #6600ff;
     --color-primary: #ffffff;
     --color-secondary: #333333;
     --color-red: #c21414;
@@ -63,7 +63,7 @@ button {
  .stop-watch__lap {
     overflow-y: auto;
     height: 70%;
-    
+    text-align: center;
  }
  ::-webkit-scrollbar {
     width: 5px;

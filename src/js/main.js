@@ -35,6 +35,7 @@ import { getTimeObject, removeElements, addElements } from "./helper.js";
 
 function Stopwatch() {
   let currentLap = [];
+  let timeStamp = [];
   let millisecondsPassed = 0;
   let timerRef;
 
@@ -56,6 +57,7 @@ function Stopwatch() {
     get: function () {
       const clockData = getTimeObject(millisecondsPassed);
       currentLap.push(clockData);
+      timeStamp.push(millisecondsPassed);
     },
   });
 
@@ -63,11 +65,12 @@ function Stopwatch() {
     get: function () {
       millisecondsPassed = 0;
       currentLap = [];
+      timeStamp = [];
     },
   });
   Object.defineProperty(this, "getLaps", {
     get: function () {
-      return currentLap;
+      return { currentLap, timeStamp };
     },
   });
 }
@@ -90,10 +93,10 @@ const millSecsClock = document.querySelector(".stop-watch__timer--milliSec");
  * @param {number} lapId - The ID of the lap.
  * @returns {HTMLElement} - The lap row element.
  */
-function getLapRow(clockData, lapId) {
+function getLapRow(clockData, lapId, duration) {
   const lapRowElement = document.createElement("p");
   const { mins, seconds, milliseconds } = clockData;
-  lapRowElement.innerText = `Lap ${lapId}  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 ${mins}:${seconds}.${milliseconds}\xa0\xa0\xa0\xa0\xa0\xa0\xa0`;
+  lapRowElement.innerText = `Lap ${lapId}  \xa0\xa0\xa0 ${mins}:${seconds}.${milliseconds}\xa0\xa0\xa0 Dur ${duration.mins}:${duration.seconds}.${duration.milliseconds}`;
   return lapRowElement;
 }
 
@@ -157,10 +160,20 @@ resetButton.addEventListener("click", function () {
 
 lapBtn.addEventListener("click", function () {
   stopWatch.addLap;
-  const lapData = stopWatch.getLaps;
+  const lapData = stopWatch.getLaps.currentLap;
+  const durationData = stopWatch.getLaps.timeStamp;
+
   const lastElement = lapData[lapData.length - 1];
-  const secondLastElement = lapData[lapData.lenght - 2];
-  const rowElment = getLapRow(lastElement, lapData.length);
+  let timeDiff;
+  if (durationData.length == 1) {
+    timeDiff = durationData[0];
+  } else {
+    timeDiff =
+      durationData[durationData.length - 1] -
+      durationData[durationData.length - 2];
+  }
+  const duration = getTimeObject(timeDiff);
+  const rowElment = getLapRow(lastElement, lapData.length, duration);
   lapContainer.appendChild(rowElment);
   lapContainer.scrollTop = lapContainer.scrollHeight;
 });
