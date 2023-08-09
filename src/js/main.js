@@ -39,13 +39,11 @@ function Stopwatch() {
   let timerRef;
 
   Object.defineProperty(this, "startTimer", {
-    get: function () {
+    set: function (callback) {
       timerRef = setInterval(() => {
         millisecondsPassed += 1;
         const clockData = getTimeObject(millisecondsPassed);
-        const { hrs, mins, seconds, milliseconds } = clockData;
-        const clockString = `${mins}:${seconds}.${milliseconds}`;
-        timerElement.innerHTML = clockString;
+        callback(clockData);
       }, 10);
     },
   });
@@ -64,8 +62,6 @@ function Stopwatch() {
   Object.defineProperty(this, "resetTimer", {
     get: function () {
       millisecondsPassed = 0;
-      const clockString = `00:00.00`;
-      timerElement.innerHTML = clockString;
       currentLap = [];
     },
   });
@@ -84,6 +80,9 @@ const startButton = document.querySelector(".stop-watch__btn--start");
 const stopButton = document.querySelector(".stop-watch__btn--stop");
 const resumeButton = document.querySelector(".stop-watch__btn--resume");
 const resetButton = document.querySelector(".stop-watch__btn--reset");
+const minsClock = document.querySelector(".stop-watch__timer--mins");
+const secsClock = document.querySelector(".stop-watch__timer--secs");
+const millSecsClock = document.querySelector(".stop-watch__timer--milliSec");
 
 /**
  * Creates a new lap row element with the given clock data.
@@ -99,7 +98,23 @@ function getLapRow(clockData, lapId) {
 }
 
 startButton.addEventListener("click", function () {
-  stopWatch.startTimer;
+  stopWatch.startTimer = function (clockData) {
+    const { hrs, mins, seconds, milliseconds } = clockData;
+    const currentMins = minsClock.innerText;
+    const currentSecs = secsClock.innerText;
+    const currentMillSecs = millSecsClock.innerText;
+    if (currentMins !== mins) {
+      minsClock.innerText = mins;
+    }
+    if (currentSecs !== seconds) {
+      secsClock.innerText = seconds;
+    }
+    if (currentMillSecs !== milliseconds) {
+      millSecsClock.innerText = milliseconds;
+    }
+    // const clockString = `${mins}:${seconds}.${milliseconds}`;
+    // timerElement.innerHTML = clockString;
+  };
   removeElements([startButton]);
   addElements([stopButton, lapBtn]);
 });
@@ -111,7 +126,21 @@ stopButton.addEventListener("click", function () {
 });
 
 resumeButton.addEventListener("click", function () {
-  stopWatch.startTimer;
+  stopWatch.startTimer = function (clockData) {
+    const { hrs, mins, seconds, milliseconds } = clockData;
+    const currentMins = minsClock.innerText;
+    const currentSecs = secsClock.innerText;
+    const currentMillSecs = millSecsClock.innerText;
+    if (currentMins !== mins) {
+      minsClock.innerText = mins;
+    }
+    if (currentSecs !== seconds) {
+      secsClock.innerText = seconds;
+    }
+    if (currentMillSecs !== milliseconds) {
+      millSecsClock.innerText = milliseconds;
+    }
+  };
   removeElements([resumeButton, resetButton]);
   addElements([stopButton, lapBtn]);
 });
@@ -120,6 +149,9 @@ resetButton.addEventListener("click", function () {
   stopWatch.resetTimer;
   addElements([startButton]);
   removeElements([resumeButton, resetButton]);
+  minsClock.innerText = "00";
+  secsClock.innerText = "00";
+  millSecsClock.innerText = "00";
   lapContainer.innerHTML = "";
 });
 
