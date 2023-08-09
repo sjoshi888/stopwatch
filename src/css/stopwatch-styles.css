@@ -38,6 +38,7 @@ p {
     justify-content: center;
     align-items: center;
     gap: 40px;
+    margin-top: 30px;
 }
 button {
     font-weight: 600;
@@ -55,7 +56,6 @@ button {
  .stop-watch__lap {
     overflow-y: auto;
     height: 70%;
-    text-align: center;
     
  }
  ::-webkit-scrollbar {
