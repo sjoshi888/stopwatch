@@ -1,4 +1,4 @@
-/**
+
  * The 'code_under_test' code snippet defines a class called 'Stopwatch' that represents a stopwatch functionality.
  * It provides features like start, stop, resume, reset, and lap.
  * The stopwatch uses helper functions from the 'helper.js' file to manipulate the DOM and calculate time.
@@ -30,4 +30,3 @@
  * - lapBtn: Adds a lap when clicked, gets the lap data from the stopwatch, creates a new lap row element, and appends it to the lap container.
  *
  * Overall, the code snippet provides a functional stopwatch with lap functionality on a webpage.
- */
