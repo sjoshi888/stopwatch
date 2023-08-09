@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="./css/stopwatch-styles.css" />
+  </head>
+  <body>
+    <main>
+      <div class="stop-watch">
+        <p class="stop-watch__timer">00:00.00</p>
+        <div class="stop-watch__lap"></div>
+        <div class="stop-watch__control">
+          <button class="stop-watch__btn stop-watch__btn--start bg-voilet">
+            Start
+          </button>
+          <button class="stop-watch__btn stop-watch__btn--stop bg-red">
+            Stop
+          </button>
+          <button class="stop-watch__btn stop-watch__btn--reset bg-black">
+            Reset
+          </button>
+          <button class="stop-watch__btn stop-watch__btn--resume bg-green">
+            Resume
+          </button>
+          <button class="stop-watch__btn stop-watch__btn--lap bg-black">
+            Lap
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>

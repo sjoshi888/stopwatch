@@ -1,0 +1,84 @@
+:root {
+	--gray-color: #cbcbcb;
+    --charcoal-color: #36454F;
+    --voilet-color: #1adaeb;
+    --color-primary: #ffffff;
+    --color-secondary: #333333;
+    --color-red: #c21414;
+    --voilet-green: rgb(11, 126, 11);
+}
+
+html {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+}
+p { 
+    margin: 2px;
+}
+.stop-watch {
+    background-color: var(--charcoal-color);
+    border-radius: 20px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    height: 500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+
+.stop-watch__timer {
+    font-size: 46px;
+    text-align: center;
+}
+.stop-watch__control {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+button {
+    font-weight: 600;
+    text-transform: capitalize;
+    /* outline: none; */
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.stop-watch__btn {
+    color: var(--color-primary);
+    font-size: 18px;
+    padding: 10px 20px;
+}
+ .stop-watch__lap {
+    overflow-y: auto;
+    height: 70%;
+    text-align: center;
+    
+ }
+ ::-webkit-scrollbar {
+    width: 5px;
+ }
+ ::-webkit-scrollbar-track {
+    background-color: #cbcbcb;
+ }
+ ::-webkit-scrollbar-thumb {
+    background-color: grey;
+ }
+ .bg-red { 
+    background-color: var(--color-red);
+ }
+ .bg-voilet { 
+    background-color: var(--voilet-color);
+ }
+ .bg-green { 
+    background-color: var(--voilet-green);
+ }
+ .bg-black { 
+    background-color: #000000;;
+ }
+ .stop-watch__btn--stop, .stop-watch__btn--reset,.stop-watch__btn--resume, .stop-watch__btn--lap {
+    display: none; 
+ }
